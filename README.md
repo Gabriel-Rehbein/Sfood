@@ -41,5 +41,3 @@ Calcula itens recomendados com base no comportamento do cliente.
 
 ---
 
-## 🧱 Arquitetura Geral
-
