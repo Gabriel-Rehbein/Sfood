@@ -1,0 +1,65 @@
+@media (max-width: 960px) {
+  .cliente-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card-produtos {
+    grid-row: auto;
+  }
+
+  .card-carrinho,
+  .card-recomendacoes {
+    grid-row: auto;
+  }
+
+  .ceo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .topbar-nav {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .layout {
+    padding: 0 0.75rem;
+  }
+
+  .chat-card {
+    height: auto;
+  }
+
+  .ceo-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .planner-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .field {
+    width: 100%;
+  }
+
+  .chat-input-row {
+    flex-direction: column;
+  }
+
+  .chat-input-row .btn {
+    width: 100%;
+  }
+}

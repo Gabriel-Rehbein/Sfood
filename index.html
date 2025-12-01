@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>SFOOD — Supermercado Inteligente</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-logo">
+      <span class="logo-icon">S</span>
+      <span class="logo-text">SFOOD</span>
+    </div>
+    <nav class="topbar-nav">
+      <button class="nav-btn active" data-target="cliente-area">Cliente</button>
+      <button class="nav-btn" data-target="chatbot-area">Chat IA</button>
+      <button class="nav-btn" data-target="planner-area">Planner</button>
+      <button class="nav-btn" data-target="intranet-area">Intranet</button>
+      <button class="nav-btn" data-target="ceo-area">CEO</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+
+    <!-- ======================= CLIENTE ======================= -->
+    <section id="cliente-area" class="view-area active fade-in">
+      <div class="view-header">
+        <h1>SFOOD — Supermercado Inteligente 🍅</h1>
+        <p>Monte seu carrinho e deixe a IA sugerir produtos para você.</p>
+      </div>
+
+      <div class="cliente-grid">
+        <!-- Lista de produtos -->
+        <div class="card card-produtos">
+          <div class="card-header">
+            <h2>Produtos</h2>
+            <button class="btn ghost" id="btn-recarregar-produtos">Recarregar</button>
+          </div>
+          <div id="produtos-list" class="produtos-list">
+            <!-- Produtos via JS -->
+          </div>
+        </div>
+
+        <!-- Carrinho -->
+        <div class="card card-carrinho">
+          <div class="card-header">
+            <h2>Carrinho</h2>
+          </div>
+          <div id="carrinho-list" class="carrinho-list">
+            <p class="placeholder">Nenhum item no carrinho ainda.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn primary" id="btn-recomendacoes">Ver recomendações da IA</button>
+          </div>
+        </div>
+
+        <!-- Recomendações -->
+        <div class="card card-recomendacoes">
+          <div class="card-header">
+            <h2>Recomendações da IA 🧠</h2>
+          </div>
+          <div id="recomendacoes-list" class="recomendacoes-list">
+            <p class="placeholder">As sugestões aparecem aqui após você pedir recomendações.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CHATBOT IA ======================= -->
+    <section id="chatbot-area" class="view-area">
+      <div class="view-header">
+        <h1>Assistente Virtual SFOOD 🤖</h1>
+        <p>Pergunte sobre entrega, pagamento, produtos e mais.</p>
+      </div>
+
+      <div class="card chat-card">
+        <div id="chat-messages" class="chat-messages">
+          <div class="chat-message bot">
+            <div class="bubble">
+              Olá! Eu sou a IA da SFOOD. Como posso te ajudar hoje?
+            </div>
+          </div>
+        </div>
+        <form id="chat-form" class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Digite sua pergunta..." autocomplete="off">
+          <button type="submit" class="btn primary">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================= PLANNER ======================= -->
+    <section id="planner-area" class="view-area">
+      <div class="view-header">
+        <h1>Planner de Refeições 🍽️</h1>
+        <p>Gere um plano de refeições usando os produtos cadastrados.</p>
+      </div>
+
+      <div class="card planner-card">
+        <form id="planner-form" class="planner-form">
+          <div class="field">
+            <label for="planner-dias">Quantidade de dias</label>
+            <input type="number" id="planner-dias" min="1" max="14" value="7">
+          </div>
+          <div class="field">
+            <label>Preferências</label>
+            <div class="pill-group">
+              <label class="pill"><input type="checkbox" value="saudavel" checked> Saudável</label>
+              <label class="pill"><input type="checkbox" value="lowcarb"> Low carb</label>
+              <label class="pill"><input type="checkbox" value="rapido"> Rápido</label>
+            </div>
+          </div>
+          <button type="submit" class="btn primary">Gerar plano</button>
+        </form>
+
+        <div id="planner-result" class="planner-result">
+          <p class="placeholder">O plano de refeições aparecerá aqui.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= INTRANET ======================= -->
+    <section id="intranet-area" class="view-area">
+      <div class="view-header">
+        <h1>Intranet — Operações 🧾</h1>
+        <p>Visão da equipe interna sobre pedidos e fluxo operacional.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Últimos pedidos</h2>
+          <button class="btn ghost" id="btn-recarregar-pedidos">Recarregar</button>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Criado em</th>
+              </tr>
+            </thead>
+            <tbody id="intranet-pedidos-body">
+              <tr>
+                <td colspan="5" class="placeholder-cell">Nenhum pedido carregado.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CEO ======================= -->
+   <section id="ceo-area" class="view-area">
+  <div class="view-header">
+    <h1>Painel do CEO 📊</h1>
+    <p>Indicadores gerais de produtos, pedidos e clientes.</p>
+  </div>
+
+  <div class="ceo-grid">
+    <div class="card kpi-card">
+      <p class="kpi-label">Total de produtos</p>
+      <p class="kpi-value" id="kpi-total-produtos">0</p>
+    </div>
+
+    <div class="card kpi-card">
+      <p class="kpi-label">Total de pedidos</p>
+      <p class="kpi-value" id="kpi-total-pedidos">0</p>
+    </div>
+
+    <div class="card kpi-card">
+      <p class="kpi-label">Total de clientes</p>
+      <p class="kpi-value" id="kpi-total-clientes">0</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Resumo executivo</h2>
+      <button class="btn ghost" id="btn-recarregar-analytics">Atualizar</button>
+    </div>
+    <p id="ceo-resumo-texto">
+      Atualmente temos <strong>0</strong> produtos ativos, <strong>0</strong> pedidos registrados e <strong>0</strong> clientes na base.
+    </p>
+  </div>
+
+  <!-- 🔥 NOVO CARD COM GRÁFICO -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Vendas por categoria (mensal)</h2>
+      <button class="btn ghost" id="btn-recarregar-grafico">Atualizar gráfico</button>
+    </div>
+    <div style="height: 320px;">
+      <canvas id="chart-vendas-categorias"></canvas>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+  <footer class="footer">
+    <span>SFOOD — Supermercado Digital Inteligente • Projeto Acadêmico</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
